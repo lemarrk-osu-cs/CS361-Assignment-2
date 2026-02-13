@@ -1,11 +1,8 @@
-from nicegui import ui
+from nicegui import ui, app
 
 
 def on_continue_pressed(event):
     ui.navigate.to('/account_summary')
-
-def on_darkmode_pressed():
-    ui.notify('Dark mode engaged')
 
 def on_input_monthly_validation(value):
     conv:int
@@ -39,6 +36,9 @@ def on_click_help_button():
               known monthly expenditures. By continuing to use the features of this page you can easily input all 
               information needed to set your monthly, weekly and daily budget""")
 
+def on_click_dark_mode():
+   ui.dark_mode().bind_value(app.storage.user,'dark_mode')
+
 @ui.page('/')
 def input_page():
     with ui.row().classes('h-screen w-full items-center justify-center'):
@@ -52,13 +52,14 @@ def input_page():
                      validation=on_input_weekly_validation).props('clearable').classes('w-90')
                               
                 ui.button('Continue',on_click=on_continue_pressed).classes('w-full')  
-                ui.button("Dark Mode",on_click=on_darkmode_pressed).classes('w-full')    
+                ui.button("Dark Mode",on_click=on_click_dark_mode).classes('w-full')    
 
 @ui.page('/account_summary')
 def account_summary():
     with ui.row().classes('h-screen w-full items-center justify-center'):
         with ui.column(align_items='center').classes('w-120 items-center justify-center'):
              ui.label('Account Summary Page').classes('w-120 text-center').style('font-size:20px')
+             ui.button("Dark Mode",on_click=on_click_dark_mode).classes('w-full') 
 
-
-ui.run(title="Input Page")
+if __name__ in {"__main__", "__mp_main__"}:
+    ui.run(title="Input Page", storage_secret='901')
