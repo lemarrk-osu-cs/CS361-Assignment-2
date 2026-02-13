@@ -2,7 +2,7 @@ from nicegui import ui
 
 
 def on_continue_pressed(event):
-    ui.notify(f"Continue was pressed")
+    ui.navigate.to('/account_summary')
 
 def on_darkmode_pressed():
     ui.notify('Dark mode engaged')
@@ -39,7 +39,9 @@ def on_click_help_button():
               known monthly expenditures. By continuing to use the features of this page you can easily input all 
               information needed to set your monthly, weekly and daily budget""")
 
-with ui.row().classes('h-screen w-full items-center justify-center'):
+@ui.page('/')
+def input_page():
+    with ui.row().classes('h-screen w-full items-center justify-center'):
         with ui.column(align_items='center').classes('w-120 items-center justify-center'):
              ui.label('Budget Input').classes('w-120 text-center p5')
              ui.button('Help?',color='red', on_click=on_click_help_button).classes('text-white w-120')
@@ -51,6 +53,12 @@ with ui.row().classes('h-screen w-full items-center justify-center'):
                               
                 ui.button('Continue',on_click=on_continue_pressed).classes('w-full')  
                 ui.button("Dark Mode",on_click=on_darkmode_pressed).classes('w-full')    
+
+@ui.page('/account_summary')
+def account_summary():
+    with ui.row().classes('h-screen w-full items-center justify-center'):
+        with ui.column(align_items='center').classes('w-120 items-center justify-center'):
+             ui.label('Account Summary Page').classes('w-120 text-center').style('font-size:20px')
 
 
 ui.run(title="Input Page")
