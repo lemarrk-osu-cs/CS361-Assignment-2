@@ -1,5 +1,7 @@
 from nicegui import ui, app
 
+def on_click_delete_label(err):
+    err.delete()
 
 def on_click_continue_pressed(e):
     ui.navigate.to('/account_summary')
@@ -70,7 +72,7 @@ def account_summary():
            ui.label('Account Summary Page').classes('w-120 text-center').style('font-size:30px')
            ui.button('Account Summary?',color='red', on_click=on_click_account_help_button).classes('text-white w-120')
            with ui.card().classes('flex-grow').classes('w-full items-center'):
-                ui.html(f'Monthly allowance: {label_one}').classes('w-90')
+                ui.html(f'Monthly allowance: {label_one.on('change',)}').classes('w-90')
                 ui.html(f'Weekly allowance: {label_two}').classes('w-90')
                 ui.button("Dark Mode",on_click=on_click_dark_mode).classes('w-full') 
 
