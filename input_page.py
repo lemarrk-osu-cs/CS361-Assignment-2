@@ -1,4 +1,5 @@
 from nicegui import ui, app
+from datetime import datetime as time
 
 def make_dark():
     ui.dark_mode().toggle()
@@ -28,10 +29,10 @@ def on_input_monthly_expenses_validation(value):
         err4 = ui.label(f'Weekly input must a number greater than 0').on("click",lambda:on_click_delete_label(err4)).style('font-size:18px')
 
 def on_change_input_one(e):
-     app.storage.user['val2'] = e.value
+     app.storage.user['val1'] = e.value
 
 def on_change_input_two(e):
-     app.storage.user['val1'] = e.value
+     app.storage.user['val2'] = e.value
 
 def on_click_input_help_button():
    ui.notify("""Hello and Thank You for using this app. Please input your monthly expenditures of and your 
@@ -52,6 +53,10 @@ def on_click_navigate_to_summary():
 
 def on_click_navigate_to_root():
     ui.navigate.to('/')
+
+def calc_daily():
+    fmt = time.now()
+    return str(fmt.today())
 
 @ui.page('/')
 def input_page():
@@ -77,8 +82,9 @@ def account_summary():
            ui.label('Account Summary Page').classes('w-120 text-center').style('font-size:30px').style('font-size:18px')
            ui.button('Account Summary?',color='red', on_click=on_click_account_help_button).classes('text-white w-120').style('font-size:18px')
            with ui.card().classes('flex-grow').classes('w-full items-center'):
-                ui.html(f'Monthly allowance: {app.storage.user.get('val1')}',).classes('w-90').style('font-size:18px')
-                ui.html(f'Weekly allowance: {app.storage.user.get('val2')}').classes('w-90').style('font-size:18px')
+                ui.html(f'Monthly Income: {app.storage.user.get('val1')}',).classes('w-90').style('font-size:18px')
+                ui.html(f'Monthly Expenses: {app.storage.user.get('val2')}').classes('w-90').style('font-size:18px')
+                ui.label(text='').text = calc_daily()
                 ui.button("Dark Mode",on_click=make_dark).classes('w-full').style('font-size:18px')
         ui.button('->').style('font-size:18px')
 
