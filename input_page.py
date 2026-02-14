@@ -34,18 +34,18 @@ def on_change_input_two(e):
      app.storage.user['val1'] = e.value
 
 def on_click_input_help_button():
-    ui.timer(20.0, ui.notify("""Hello and Thank You for using this app. Please input your monthly expenditures of and your 
+   ui.notify("""Hello and Thank You for using this app. Please input your monthly expenditures of and your 
               known monthly income. By continuing to use the features of this page you can easily input all 
               information needed to set your monthly, weekly and daily budget! Just press "Continue" or the "Arrow Keys"
               when you are done to be able to calculate your budget for Weekly and Daily amounts.
-              """),once=True).style('font-size:18px')
+              """,timeout=10000).style('font-size:18px')
 
 def on_click_account_help_button():
-    ui.timer(20.0, ui.notify("""Your monthly and weekly information needed to set your daily budget
+    ui.notify("""Your monthly and weekly information needed to set your daily budget
               is here. The daily allowance is calculated by the number of days in the month divided into the monthly amount.
               The weekly amount is very similarly calculated as the number of weeks divided into the monthly
                amount of income given.
-             """),once=True).style('font-size:18px')
+             """,timeout=10000).style('font-size:18px')
 
 def on_click_navigate_to_summary():
     ui.navigate.to('/account_summary')
