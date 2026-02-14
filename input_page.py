@@ -1,5 +1,4 @@
 from nicegui import ui, app
-from datetime import datetime as time
 
 def make_dark():
     ui.dark_mode().toggle()
@@ -54,10 +53,6 @@ def on_click_navigate_to_summary():
 def on_click_navigate_to_root():
     ui.navigate.to('/')
 
-def calc_daily():
-    fmt = time.now()
-    return str(fmt.today())
-
 @ui.page('/')
 def input_page():
     with ui.row().classes('h-screen w-full items-center justify-center'):
@@ -84,7 +79,6 @@ def account_summary():
            with ui.card().classes('flex-grow').classes('w-full items-center'):
                 ui.html(f'Monthly Income: {app.storage.user.get('val1')}',).classes('w-90').style('font-size:18px')
                 ui.html(f'Monthly Expenses: {app.storage.user.get('val2')}').classes('w-90').style('font-size:18px')
-                ui.label(text='').text = calc_daily()
                 ui.button("Dark Mode",on_click=make_dark).classes('w-full').style('font-size:18px')
         ui.button('->').style('font-size:18px')
 
