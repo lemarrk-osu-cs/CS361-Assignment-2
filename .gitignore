@@ -422,3 +422,4 @@ venv/*.*
 venv/**
 .nicegui
 .vscode
+.zip
