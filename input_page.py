@@ -1,8 +1,5 @@
 from nicegui import ui, app
 
-def make_dark():
-    ui.dark_mode().toggle()
-
 def on_click_delete_label(err):
     err.delete()
 
@@ -53,6 +50,12 @@ def on_click_navigate_to_summary():
 def on_click_navigate_to_root():
     ui.navigate.to('/')
 
+def on_click_navigate_to_summary_dark():
+    ui.navigate.to('/dark_account_summary')
+
+def on_click_navigate_to_root_dark():
+    ui.navigate.to('/dark_page')
+
 @ui.page('/')
 def input_page():
     with ui.row().classes('h-screen w-full items-center justify-center'):
@@ -66,8 +69,24 @@ def input_page():
                     ui.input(placeholder='Input Monthly Expenses', on_change=on_change_input_two,
                         validation=on_input_monthly_expenses_validation).props('clearable').classes('w-90').style('font-size:18px')             
                     ui.button('Continue',on_click=on_click_continue_pressed).classes('w-full').style('font-size:18px') 
-                    ui.button("Dark Mode",on_click=make_dark).classes('w-full').style('font-size:18px') 
+                    ui.button("Dark Mode",on_click=on_click_navigate_to_root_dark).classes('w-full').style('font-size:18px') 
             ui.button('->',on_click=on_click_navigate_to_summary).style('font-size:18px')
+
+@ui.page('/dark_page',dark=True)
+def input_page():
+    with ui.row().classes('h-screen w-full items-center justify-center'):
+            ui.button('<-').style('font-size:18px') 
+            with ui.column(align_items='center').classes('w-120 items-center justify-center'):
+                ui.label('Budget Input').classes('w-120 text-center').style('font-size:30px').style('font-size:18px')
+                ui.button('Help?',color='red', on_click=on_click_input_help_button).classes('text-white w-120').style('font-size:18px')
+                with ui.card().classes('flex-grow').classes('w-full items-center'):
+                    ui.input(placeholder='Input Monthly Income', on_change=on_change_input_one,
+                        validation=on_input_monthly_validation).props('clearable').classes('w-90').style('font-size:18px')
+                    ui.input(placeholder='Input Monthly Expenses', on_change=on_change_input_two,
+                        validation=on_input_monthly_expenses_validation).props('clearable').classes('w-90').style('font-size:18px')             
+                    ui.button('Continue',on_click=on_click_continue_pressed).classes('w-full').style('font-size:18px') 
+                    ui.button("Dark Mode",on_click=on_click_navigate_to_root).classes('w-full').style('font-size:18px') 
+            ui.button('->',on_click=on_click_navigate_to_summary_dark).style('font-size:18px')
 
 @ui.page('/account_summary')
 def account_summary():
@@ -79,7 +98,20 @@ def account_summary():
            with ui.card().classes('flex-grow').classes('w-full items-center'):
                 ui.html(f'Monthly Income: {app.storage.user.get('val1')}',).classes('w-90').style('font-size:18px')
                 ui.html(f'Monthly Expenses: {app.storage.user.get('val2')}').classes('w-90').style('font-size:18px')
-                ui.button("Dark Mode",on_click=make_dark).classes('w-full').style('font-size:18px')
+                ui.button("Dark Mode",on_click=on_click_navigate_to_summary_dark).classes('w-full').style('font-size:18px')
         ui.button('->').style('font-size:18px')
 
-ui.run(title="Input Page", storage_secret='901',dark=False)
+@ui.page('/dark_account_summary',dark=True)
+def account_summary():
+    with ui.row().classes('h-screen w-full items-center justify-center'):
+        ui.button('<-',on_click=on_click_navigate_to_root_dark).style('font-size:18px')
+        with ui.column(align_items='center').classes('w-120 items-center justify-center'):
+           ui.label('Account Summary Page').classes('w-120 text-center').style('font-size:30px').style('font-size:18px')
+           ui.button('Account Summary?',color='red', on_click=on_click_account_help_button).classes('text-white w-120').style('font-size:18px')
+           with ui.card().classes('flex-grow').classes('w-full items-center'):
+                ui.html(f'Monthly Income: {app.storage.user.get('val1')}',).classes('w-90').style('font-size:18px')
+                ui.html(f'Monthly Expenses: {app.storage.user.get('val2')}').classes('w-90').style('font-size:18px')
+                ui.button("Dark Mode",on_click=on_click_navigate_to_summary).classes('w-full').style('font-size:18px')
+        ui.button('->').style('font-size:18px')
+
+ui.run(title="Input Page", storage_secret='901')
