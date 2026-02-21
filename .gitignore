@@ -422,4 +422,5 @@ venv/*.*
 venv/**
 .nicegui
 .vscode
-.zip
+*.zip
+.DS_Store/**
