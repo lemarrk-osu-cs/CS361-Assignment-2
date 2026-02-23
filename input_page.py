@@ -57,7 +57,8 @@ def on_click_navigate_to_root_dark():
     ui.navigate.to('/dark_page')
 
 def on_click_purpose_button():
-    ui.notify(""" 
+    ui.notify("""The Purpose of this Input Page is to help you become Mindfully 
+              aware of how much you spend each month and how much you spend daily.
              """,timeout=10000).style('font-size:18px')
 
 @ui.page('/')
