@@ -31,10 +31,10 @@ def on_change_input_two(e):
      app.storage.user['val2'] = e.value
 
 def on_click_input_help_button():
-   ui.notify("""Hello and Thank You for using this app. Please input your monthly expenditures of and your 
+    ui.notify("""Hello and Thank You for using this app. Please input your monthly expenditures of and your 
               known monthly income. By continuing to use the features of this page you can easily input all 
-              information needed to set your monthly, weekly and daily budget! Just press "Continue" or the "Arrow Keys"
-              when you are done to be able to calculate your budget for Weekly and Daily amounts.
+              information needed to set your monthly, weekly and daily budget! Just press "Continue"
+              when you are done to be able to calculate and see your budget for Weekly and Daily amounts.
               """,timeout=10000).style('font-size:18px')
 
 def on_click_account_help_button():
@@ -56,12 +56,17 @@ def on_click_navigate_to_summary_dark():
 def on_click_navigate_to_root_dark():
     ui.navigate.to('/dark_page')
 
+def on_click_purpose_button():
+    ui.notify(""" 
+             """,timeout=10000).style('font-size:18px')
+
 @ui.page('/')
 def input_page():
     with ui.row().classes('h-screen w-full items-center justify-center'):
             ui.button('<-').style('font-size:18px') 
             with ui.column(align_items='center').classes('w-120 items-center justify-center'):
                 ui.label('Budget Input').classes('w-120 text-center').style('font-size:30px').style('font-size:18px')
+                ui.button("Purpose!", on_click=on_click_purpose_button).classes('text-white w-120').style('font-size:18px')
                 ui.button('Help?',color='red', on_click=on_click_input_help_button).classes('text-white w-120').style('font-size:18px')
                 with ui.card().classes('flex-grow').classes('w-full items-center'):
                     ui.input(placeholder='Input Monthly Income', on_change=on_change_input_one,
