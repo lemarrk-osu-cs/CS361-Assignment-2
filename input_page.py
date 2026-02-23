@@ -84,6 +84,7 @@ def input_page():
             ui.button('<-').style('font-size:18px') 
             with ui.column(align_items='center').classes('w-120 items-center justify-center'):
                 ui.label('Budget Input').classes('w-120 text-center').style('font-size:30px').style('font-size:18px')
+                ui.button("Purpose!", on_click=on_click_purpose_button).classes('text-white w-120').style('font-size:18px')
                 ui.button('Help?',color='red', on_click=on_click_input_help_button).classes('text-white w-120').style('font-size:18px')
                 with ui.card().classes('flex-grow').classes('w-full items-center'):
                     ui.input(placeholder='Input Monthly Income', on_change=on_change_input_one,
