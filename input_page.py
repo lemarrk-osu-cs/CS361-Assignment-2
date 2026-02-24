@@ -41,17 +41,16 @@ def on_change_input_two(e):
      app.storage.user['val2'] = e.value
 
 def on_click_input_help_button():
-    ui.notify("""Please input your monthly expenditures of your 
-              known monthly income and monthly expenses. By continuing to use the features of this page you can easily input all 
-              information needed to set your monthly and daily budget! Just press "Continue"
-              when you are done to be able to calculate and see your budgeted daily amounts.
-              """,timeout=10000).style('font-size:18px')
+    ui.notify("""Please input your monthly expenditures and income into their respective fields. By using the
+              features of this page you can easily input all information needed to set your daily budget!
+              Just press "Continue" when you are done to be able to calculate and see your budgeted daily amounts on the next page.
+              """)
 
 def on_click_account_help_button():
-    ui.notify("""Your monthly information is needed to set your daily budget
-              here. The daily allowance is calculated by the number of days left in the month divided into your 
-              leftover income given for your monthly expenses.
-             """,timeout=10000).style('font-size:18px')
+    ui.notify("""Your monthly income information and monthly expenses are needed to set your daily budget
+              here. The daily allowance is calculated to show how much you can spend each day with the given
+              figures submitted.
+             """)
 
 def on_click_navigate_to_summary():
     ui.navigate.to('/account_summary')
@@ -66,9 +65,9 @@ def on_click_navigate_to_root_dark():
     ui.navigate.to('/dark_page')
 
 def on_click_purpose_button():
-    ui.notify("""The purpose of this Input Page is to help you become Mindfully 
-              aware of how much you spend each month and how much you spend daily.
-             """,timeout=10000).style('font-size:18px')
+    ui.notify("""The purpose of this Input Page is to help you become "Mindfully 
+              Aware" of how much you spend each month and how much you can spend daily.
+             """)
 
 @ui.page('/')
 def input_page():
