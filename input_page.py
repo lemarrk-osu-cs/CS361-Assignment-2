@@ -43,13 +43,16 @@ def on_change_input_two(e):
 def on_click_input_help_button():
     ui.notify("""Please input your monthly expenditures and income into their respective fields. By using the
               features of this page you can easily input all information needed to set your daily budget!
-              Just press "Continue" when you are done to be able to calculate and see your budgeted daily amounts on the next page.
+              Just press "Continue" when you are done to be able to calculate and see your budgeted daily amounts on the next page. 
+              Your data is also held private in your browser when you use this application.
+              Just clear your history and all information will be deleted.
               """)
 
 def on_click_account_help_button():
     ui.notify("""Your monthly income information and monthly expenses are needed to set your daily budget
               here. The daily allowance is calculated to show how much you can spend each day with the given
-              figures submitted.
+              figures submitted. Your data is also held private in your browser when you use this application.
+              Just clear your history and all information will be deleted.
              """)
 
 def on_click_navigate_to_summary():
