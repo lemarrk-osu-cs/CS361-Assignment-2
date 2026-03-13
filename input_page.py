@@ -58,15 +58,21 @@ def on_click_account_help_button():
 def on_click_navigate_to_summary():
     ui.navigate.to('/account_summary')
 
-def on_click_navigate_to_root():
-    ui.navigate.to('/')
-
 def on_click_navigate_to_summary_dark():
     ui.navigate.to('/dark_account_summary')
+
+def on_click_navigate_to_root():
+    ui.navigate.to('/')
 
 def on_click_navigate_to_root_dark():
     ui.navigate.to('/dark_page')
 
+def on_click_navigate_to_reminder_dark():
+    ui.navigate.to('/dark_reminder') 
+
+def on_click_navigate_to_reminder():
+    ui.navigate.to('/reminder')
+    
 def on_click_purpose_button():
     ui.notify("""The purpose of this Input Page is to help you become "Mindfully 
               Aware" of how much you spend each month and how much you can spend daily.
@@ -75,7 +81,7 @@ def on_click_purpose_button():
 @ui.page('/')
 def input_page():
     with ui.row().classes('h-screen w-full items-center justify-center'):
-            ui.button('<-').style('font-size:18px') 
+            ui.button('<-',on_click=on_click_navigate_to_reminder).style('font-size:18px') 
             with ui.column(align_items='center').classes('w-120 items-center justify-center'):
                 ui.label('Input Budget Page').classes('w-120 text-center').style('font-size:30px').style('font-size:18px')
                 ui.button("Purpose!", on_click=on_click_purpose_button).classes('text-white w-120').style('font-size:18px')
@@ -92,7 +98,7 @@ def input_page():
 @ui.page('/dark_page',dark=True)
 def input_page():
     with ui.row().classes('h-screen w-full items-center justify-center'):
-            ui.button('<-').style('font-size:18px') 
+            ui.button('<-',on_click=on_click_navigate_to_reminder_dark).style('font-size:18px') 
             with ui.column(align_items='center').classes('w-120 items-center justify-center'):
                 ui.label('Input Budget Page').classes('w-120 text-center').style('font-size:30px').style('font-size:18px')
                 ui.button("Purpose!", on_click=on_click_purpose_button).classes('text-white w-120').style('font-size:18px')
@@ -133,5 +139,34 @@ def account_summary():
                 ui.label('').bind_text_from(dailylabel,'value').classes('w-90').style('font-size:18px')
                 ui.button("Dark Mode",on_click=on_click_navigate_to_summary).classes('w-full').style('font-size:18px')
         ui.button('->').style('font-size:18px')
+
+
+@ui.page("/reminder")
+def reminder_page():
+    with ui.row().classes('h-screen w-full items-center justify-center'):
+        #ui.button('<-',).style('font-size:18px')
+        with ui.column(align_items='center').classes('w-120 items-center justify-center'):
+            #ui.label('Account Summary Page').classes('w-120 text-center').style('font-size:30px').style('font-size:18px')
+            #ui.button('Account Summary?',color='red', on_click=on_click_account_help_button).classes('text-white w-120').style('font-size:18px')
+            with ui.card().classes('flex-grow').classes('w-full items-center'):
+                ui.html(f'Reminder: $',).classes('w-90').style('font-size:18px')
+                #ui.html(f'Monthly Expenses: ${app.storage.user.get('val2')}').classes('w-90').style('font-size:18px')
+                #ui.label('').bind_text_from(dailylabel,'value').classes('w-90').style('font-size:18px')
+                #ui.button("Dark Mode",on_click=on_click_navigate_to_reminder_dark).classes('w-full').style('font-size:18px')
+        ui.button('->',on_click=on_click_navigate_to_summary).style('font-size:18px')
+
+@ui.page("/dark_reminder", dark=True)
+def reminder_page():
+    with ui.row().classes('h-screen w-full items-center justify-center'):
+        #ui.button('<-',on_click=on_click_navigate_to_root_dark).style('font-size:18px')
+        with ui.column(align_items='center').classes('w-120 items-center justify-center'):
+            #ui.label('Account Summary Page').classes('w-120 text-center').style('font-size:30px').style('font-size:18px')
+            #ui.button('Account Summary?',color='red', on_click=on_click_account_help_button).classes('text-white w-120').style('font-size:18px')
+            with ui.card().classes('flex-grow').classes('w-full items-center'):
+                ui.html(f'Reminder: $',).classes('w-90').style('font-size:18px')
+                #ui.html(f'Monthly Expenses: ${app.storage.user.get('val2')}').classes('w-90').style('font-size:18px')
+                #ui.label('').bind_text_from(dailylabel,'value').classes('w-90').style('font-size:18px')
+                #ui.button("Dark Mode",on_click=on_click_navigate_to_reminder).classes('w-full').style('font-size:18px')
+    ui.button('->',on_click=on_click_navigate_to_summary_dark).style('font-size:18px')
 
 ui.run(title="Input Page", storage_secret='901')
