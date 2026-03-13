@@ -151,7 +151,7 @@ def reminder_page():
         #ui.button('<-',).style('font-size:18px')
         with ui.column(align_items='center').classes('w-120 items-center justify-center'):
             ui.label('Programmable Reminder Page').classes('w-120 text-center').style('font-size:30px').style('font-size:18px')
-            ui.button('Submit Reminder?',color='red', on_click=on_click_account_add_reminder_label).classes('text-white w-120').style('font-size:18px')
+            ui.button('Submit Reminder?', on_click=on_click_account_add_reminder_label).classes('text-white w-120').style('font-size:18px')
             with ui.card().classes('flex-grow').classes('w-full items-center'):
                 ui.html(f'Reminder: $',).classes('w-90').style('font-size:18px')
                 #ui.html(f'Monthly Expenses: ${app.storage.user.get('val2')}').classes('w-90').style('font-size:18px')
@@ -165,7 +165,7 @@ def reminder_page():
         #ui.button('<-',on_click=on_click_navigate_to_root_dark).style('font-size:18px')
         with ui.column(align_items='center').classes('w-120 items-center justify-center'):
             ui.label('Programmable Reminder Page').classes('w-120 text-center').style('font-size:30px').style('font-size:18px')
-            ui.button('Submit Reminder?',color='red', on_click=on_click_account_add_reminder_label).classes('text-white w-120').style('font-size:18px')
+            ui.button('Submit Reminder?',on_click=on_click_account_add_reminder_label).classes('text-white w-120').style('font-size:18px')
             with ui.card().classes('flex-grow').classes('w-full items-center'):
                 ui.html(f'Reminder: $',).classes('w-90').style('font-size:18px')
                 #ui.html(f'Monthly Expenses: ${app.storage.user.get('val2')}').classes('w-90').style('font-size:18px')
